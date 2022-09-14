@@ -1,5 +1,11 @@
+
+typedef char NameType[50];
+typedef char CpfType[11];
+
 typedef struct
 {
-  char name[50], cpf[11];
+  NameType name;
+  CpfType cpf;
+
   void *next;
 } UserType;
