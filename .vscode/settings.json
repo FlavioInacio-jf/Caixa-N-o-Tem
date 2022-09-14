@@ -1,5 +1,9 @@
 {
   "files.associations": {
-    "get-queue-size.h": "c"
+    "get-queue-size.h": "c",
+    "add-user.service.h": "c",
+    "delete-user.service.h": "c",
+    "get-position-user.service.h": "c",
+    "get-queue-size.service.h": "c"
   }
 }

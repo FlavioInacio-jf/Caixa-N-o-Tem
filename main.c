@@ -1,9 +1,9 @@
 #include <stdio.h>
 
-#include "add-user.h"
-#include "delete-user.h"
-#include "get-position-user.h"
-#include "get-queue-size.h"
+#include "services/add-user.service.h"
+#include "services/delete-user.service.h"
+#include "services/get-position-user.service.h"
+#include "services/get-queue-size.service.h"
 
 #include "types/user.type.h"
 

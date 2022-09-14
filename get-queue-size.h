@@ -1,4 +1,0 @@
-void getQueueSize()
-{
-  return;
-}

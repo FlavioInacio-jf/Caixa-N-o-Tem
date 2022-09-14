@@ -1,4 +1,4 @@
-void addUser()
+void addUserService()
 {
   printf("\n");
   return;
