@@ -12,6 +12,7 @@
 
 int main()
 {
+  UserType *start, *aux, *end = NULL;
   int choice;
 
   do
