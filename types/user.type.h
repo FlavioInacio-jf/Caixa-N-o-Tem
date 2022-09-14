@@ -1,6 +1,5 @@
-struct User
+typedef struct
 {
-  char nome[50];
-};
-
-typedef struct User UserType;
+  char name[50], cpf[11];
+  void *next;
+} UserType;

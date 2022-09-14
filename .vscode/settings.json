@@ -5,6 +5,7 @@
     "delete-user.service.h": "c",
     "get-position-user.service.h": "c",
     "get-queue-size.service.h": "c",
-    "stdio.h": "c"
+    "stdio.h": "c",
+    "user.type.h": "c"
   }
 }
