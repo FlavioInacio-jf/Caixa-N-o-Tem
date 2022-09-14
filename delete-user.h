@@ -1,0 +1,4 @@
+void deleteUser()
+{
+  return;
+}
