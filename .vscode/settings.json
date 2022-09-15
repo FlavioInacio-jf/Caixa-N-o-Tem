@@ -6,6 +6,8 @@
     "get-position-user.service.h": "c",
     "get-queue-size.service.h": "c",
     "stdio.h": "c",
-    "user.type.h": "c"
+    "user.type.h": "c",
+    "typeinfo": "c",
+    "stdlib.h": "c"
   }
 }

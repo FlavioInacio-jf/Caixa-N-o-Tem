@@ -8,15 +8,14 @@
 #include "services/get-queue-size.service.h"
 #include "services/leave-queue.service.h"
 
-#include "types/user.type.h"
-
-int main()
+int main(void)
 {
-  UserType *start, *aux, *end = NULL;
+  UserType *start = NULL, *end = NULL;
   int choice;
 
   do
   {
+    printf("%s", start->name);
     system("cls");
     printf("\n\n-------------------------");
     printf("\n> > > CAIXA NÂO TEM < < <\n");
@@ -33,7 +32,7 @@ int main()
     switch (choice)
     {
     case 1:
-      addUserService();
+      addUserService(&start, &end);
       break;
     case 2:
       deleteUserService();
@@ -50,6 +49,5 @@ int main()
     }
 
   } while (choice != 6);
-
   return 0;
 }
