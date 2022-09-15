@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 typedef char NameType[50];
 typedef char CpfType[11];
@@ -13,11 +14,11 @@ typedef struct
   void *next;
 } UserType;
 
-void deleteUserService(UserType **start, UserType **end);
-void addUserService(UserType **start, UserType **end);
 void getPositionUserService(UserType **start, UserType **end);
 void getQueueSizeService(UserType **start, UserType **end);
+void deleteUserService(UserType **start, UserType **end);
 void leaveQueueService(UserType **start, UserType **end);
+void addUserService(UserType **start, UserType **end);
 
 int main(void)
 {
@@ -90,7 +91,7 @@ void addUserService(UserType **start, UserType **end)
   }
   else
   {
-    (*start)->next = aux;
+    (*end)->next = aux;
     *end = aux;
   }
 
@@ -101,12 +102,53 @@ void addUserService(UserType **start, UserType **end)
 
 void deleteUserService(UserType **start, UserType **end)
 {
+  UserType *aux;
+
+  system("cls");
+  printf("*** Chamada de usuario ***\n\n");
+  printf("quantidade: ");
+
   return;
 }
 
 void getPositionUserService(UserType **start, UserType **end)
 {
+  UserType *aux;
+  CpfType cpf;
 
+  unsigned int userPosition = 0;
+  bool foundUser = false;
+
+  system("cls");
+  printf("*** Posicao do usuário na fila ***\n\n");
+
+  if (*start != NULL)
+  {
+    printf("CPF do usuario: ");
+    scanf(" %s", cpf);
+
+    aux = *start;
+
+    while (aux != NULL && foundUser == false)
+    {
+      if (aux->cpf == cpf)
+        foundUser = true;
+
+      aux = aux->next;
+
+      if (aux != NULL)
+        userPosition++;
+    }
+
+    if (foundUser)
+      printf("*** Posicao do usuário informado eh: %d", userPosition);
+    else
+      printf("*** Usuário não está na fila ***");
+  }
+  else
+  {
+    printf("*** Não existe pessoas na fila ***");
+  }
   return;
 }
 
