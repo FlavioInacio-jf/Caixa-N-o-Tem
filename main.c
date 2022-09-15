@@ -15,7 +15,6 @@ int main(void)
 
   do
   {
-    printf("%s", start->name);
     system("cls");
     printf("\n\n-------------------------");
     printf("\n> > > CAIXA NÂO TEM < < <\n");
