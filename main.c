@@ -129,9 +129,9 @@ void getPositionUserService(UserType **start, UserType **end)
 
     aux = *start;
 
-    while (aux != NULL && foundUser == false)
+    while (aux != NULL && !foundUser)
     {
-      if (aux->cpf == cpf)
+      if (strcmp(aux->cpf, cpf) == 0)
         foundUser = true;
 
       aux = aux->next;
@@ -159,5 +159,48 @@ void getQueueSizeService(UserType **start, UserType **end)
 
 void leaveQueueService(UserType **start, UserType **end)
 {
+  UserType *current, *next;
+  CpfType cpf;
+
+  bool foundUser = false;
+
+  system("cls");
+  printf("*** Abandano da fila ***\n\n");
+  printf("CPF do usuario: ");
+  scanf(" %s", cpf);
+
+  current = *start;
+  next = current->next;
+
+  while (current != NULL && !foundUser)
+  {
+    if (strcmp(current->cpf, cpf) == 0)
+    {
+      foundUser = true;
+    }
+    else if (strcmp(next->cpf, cpf) == 0)
+    {
+      foundUser = true;
+
+      current->next = next->next;
+      free(next);
+      next = NULL;
+
+      if (current->next == NULL)
+        *end = current;
+    }
+    else
+    {
+      current = next;
+      next = current->next;
+    }
+  }
+
+  if (foundUser)
+    printf("*** Usuário removido da fila ***");
+  else
+    printf("*** Usuário não está na fila ***");
+
+  system("pause");
   return;
 }
