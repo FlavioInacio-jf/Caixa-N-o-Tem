@@ -1,4 +1,0 @@
-void deleteUserService()
-{
-  return;
-}

@@ -8,6 +8,8 @@
     "stdio.h": "c",
     "user.type.h": "c",
     "typeinfo": "c",
-    "stdlib.h": "c"
+    "stdlib.h": "c",
+    "add-user.header.h": "c",
+    "delete-user.header.h": "c"
   }
 }
