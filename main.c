@@ -106,8 +106,22 @@ void deleteUserService(UserType **start, UserType **end)
 
   system("cls");
   printf("*** Chamada de usuario ***\n\n");
-  printf("quantidade: ");
 
+  if (*start != NULL)
+  {
+    printf("Usuário '%s' chamado", (*start)->name);
+
+    aux = *start;
+    *start = (*start)->next;
+
+    free(aux);
+    aux = NULL;
+  }
+  else
+    printf("*** Não existem pessoas na fila ***");
+
+  system("pause");
+  system("cls");
   return;
 }
 
@@ -147,13 +161,19 @@ void getPositionUserService(UserType **start, UserType **end)
   }
   else
   {
-    printf("*** Não existe pessoas na fila ***");
+    printf("*** Não existem pessoas na fila ***");
   }
+
+  system("pause");
+  system("cls");
   return;
 }
 
 void getQueueSizeService(UserType **start, UserType **end)
 {
+
+  system("pause");
+  system("cls");
   return;
 }
 
@@ -184,7 +204,7 @@ void leaveQueueService(UserType **start, UserType **end)
         *end = previous;
       else
         previous->next = aux->next;
-  
+
       free(aux);
       aux = NULL;
     }
@@ -201,5 +221,6 @@ void leaveQueueService(UserType **start, UserType **end)
     printf("*** Usuário não está na fila ***");
 
   system("pause");
+  system("cls");
   return;
 }
