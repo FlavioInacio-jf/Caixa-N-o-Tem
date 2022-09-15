@@ -159,7 +159,7 @@ void getQueueSizeService(UserType **start, UserType **end)
 
 void leaveQueueService(UserType **start, UserType **end)
 {
-  UserType *current, *next;
+  UserType *previous, *aux;
   CpfType cpf;
 
   bool foundUser = false;
@@ -169,30 +169,29 @@ void leaveQueueService(UserType **start, UserType **end)
   printf("CPF do usuario: ");
   scanf(" %s", cpf);
 
-  current = *start;
-  next = current->next;
+  aux = *start;
+  previous = NULL;
 
-  while (current != NULL && !foundUser)
+  while (aux != NULL && !foundUser)
   {
-    if (strcmp(current->cpf, cpf) == 0)
-    {
-      foundUser = true;
-    }
-    else if (strcmp(next->cpf, cpf) == 0)
+    if (strcmp(aux->cpf, cpf) == 0)
     {
       foundUser = true;
 
-      current->next = next->next;
-      free(next);
-      next = NULL;
-
-      if (current->next == NULL)
-        *end = current;
+      if (previous == NULL) // Posiciona o ponteiro de início para caso a variável dinâmica a ser removida for a primeira
+        *start = aux->next;
+      else if (aux->next == NULL) // Posiciona o ponteiro de final para caso a variável dinâmica a ser removida for a última
+        *end = previous;
+      else
+        previous->next = aux->next;
+  
+      free(aux);
+      aux = NULL;
     }
     else
     {
-      current = next;
-      next = current->next;
+      previous = aux;
+      aux = aux->next;
     }
   }
 
