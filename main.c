@@ -14,15 +14,24 @@ typedef struct
   void *next;
 } UserType;
 
-void getPositionUserService(UserType **start, UserType **end);
-void getQueueSizeService(UserType **start, UserType **end);
-void deleteUserService(UserType **start, UserType **end);
-void leaveQueueService(UserType **start, UserType **end);
-void addUserService(UserType **start, UserType **end);
+void menu();
+void getPositionUser(UserType **start, UserType **end);
+void getQueueSize(UserType **start, UserType **end);
+void deleteUser(UserType **start, UserType **end);
+void leaveQueue(UserType **start, UserType **end);
+void addUser(UserType **start, UserType **end);
 
-int main(void)
+int main()
+{
+  menu();
+
+  return 0;
+}
+
+void menu()
 {
   UserType *start = NULL, *end = NULL;
+
   int choice;
 
   do
@@ -43,27 +52,27 @@ int main(void)
     switch (choice)
     {
     case 1:
-      addUserService(&start, &end);
+      addUser(&start, &end);
       break;
     case 2:
-      deleteUserService(&start, &end);
+      deleteUser(&start, &end);
       break;
     case 3:
-      leaveQueueService(&start, &end);
+      leaveQueue(&start, &end);
       break;
     case 4:
-      getPositionUserService(&start, &end);
+      getPositionUser(&start, &end);
       break;
     case 5:
-      getQueueSizeService(&start, &end);
+      getQueueSize(&start, &end);
       break;
     }
 
   } while (choice != 6);
-  return 0;
+  return;
 }
 
-void addUserService(UserType **start, UserType **end)
+void addUser(UserType **start, UserType **end)
 {
   UserType *aux = NULL;
 
@@ -100,7 +109,7 @@ void addUserService(UserType **start, UserType **end)
   return;
 }
 
-void deleteUserService(UserType **start, UserType **end)
+void deleteUser(UserType **start, UserType **end)
 {
   UserType *aux;
 
@@ -125,7 +134,7 @@ void deleteUserService(UserType **start, UserType **end)
   return;
 }
 
-void getPositionUserService(UserType **start, UserType **end)
+void getPositionUser(UserType **start, UserType **end)
 {
   UserType *aux;
   CpfType cpf;
@@ -169,7 +178,7 @@ void getPositionUserService(UserType **start, UserType **end)
   return;
 }
 
-void getQueueSizeService(UserType **start, UserType **end)
+void getQueueSize(UserType **start, UserType **end)
 {
 
   system("pause");
@@ -177,7 +186,7 @@ void getQueueSizeService(UserType **start, UserType **end)
   return;
 }
 
-void leaveQueueService(UserType **start, UserType **end)
+void leaveQueue(UserType **start, UserType **end)
 {
   UserType *previous, *aux;
   CpfType cpf;
