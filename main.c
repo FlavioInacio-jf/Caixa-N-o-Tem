@@ -166,9 +166,7 @@ void getPositionUser(UserType **start)
         foundUser = true;
 
       aux = aux->next;
-
-      if (aux != NULL)
-        userPosition++;
+      userPosition++;
     }
 
     if (foundUser)
