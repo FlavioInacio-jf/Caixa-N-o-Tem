@@ -14,15 +14,25 @@ typedef struct
   void *next;
 } UserType;
 
-void getPositionUserService(UserType **start, UserType **end);
-void getQueueSizeService(UserType **start, UserType **end);
-void deleteUserService(UserType **start, UserType **end);
-void leaveQueueService(UserType **start, UserType **end);
-void addUserService(UserType **start, UserType **end);
+void menu();
+bool cpfAlredyExist(UserType *start, CpfType cpf);
+void leaveQueue(UserType **start, UserType **end);
+void addUser(UserType **start, UserType **end);
+void getPositionUser(UserType **start);
+void getQueueSize(UserType **start);
+void deleteUser(UserType **start);
 
-int main(void)
+int main()
+{
+  menu();
+
+  return 0;
+}
+
+void menu()
 {
   UserType *start = NULL, *end = NULL;
+
   int choice;
 
   do
@@ -43,27 +53,27 @@ int main(void)
     switch (choice)
     {
     case 1:
-      addUserService(&start, &end);
+      addUser(&start, &end);
       break;
     case 2:
-      deleteUserService(&start, &end);
+      deleteUser(&start);
       break;
     case 3:
-      leaveQueueService(&start, &end);
+      leaveQueue(&start, &end);
       break;
     case 4:
-      getPositionUserService(&start, &end);
+      getPositionUser(&start);
       break;
     case 5:
-      getQueueSizeService(&start, &end);
+      getQueueSize(&start);
       break;
     }
 
   } while (choice != 6);
-  return 0;
+  return;
 }
 
-void addUserService(UserType **start, UserType **end)
+void addUser(UserType **start, UserType **end)
 {
   UserType *aux = NULL;
 
@@ -72,27 +82,34 @@ void addUserService(UserType **start, UserType **end)
 
   system("cls");
   printf("*** Chegada de usuario ***\n\n");
-  printf("Nome do usuario: ");
-  scanf(" %s", name);
 
   printf("CPF do usuario: ");
   scanf(" %s", cpf);
 
-  aux = (UserType *)malloc(sizeof(UserType));
-  aux->next = NULL;
-
-  strcpy(aux->name, name);
-  strcpy(aux->cpf, cpf);
-
-  if (*start == NULL)
-  {
-    *start = aux;
-    *end = aux;
-  }
+  bool cpfExist = *start != NULL ? cpfAlredyExist(*start, cpf) : false;
+  if (cpfExist)
+    printf("***Já existe uma pessoa na fila com esse CPF***");
   else
   {
-    (*end)->next = aux;
-    *end = aux;
+    printf("Nome do usuario: ");
+    scanf(" %s", name);
+
+    aux = (UserType *)malloc(sizeof(UserType));
+    aux->next = NULL;
+
+    strcpy(aux->name, name);
+    strcpy(aux->cpf, cpf);
+
+    if (*start == NULL)
+    {
+      *start = aux;
+      *end = aux;
+    }
+    else
+    {
+      (*end)->next = aux;
+      *end = aux;
+    }
   }
 
   system("pause");
@@ -100,7 +117,7 @@ void addUserService(UserType **start, UserType **end)
   return;
 }
 
-void deleteUserService(UserType **start, UserType **end)
+void deleteUser(UserType **start)
 {
   UserType *aux;
 
@@ -125,7 +142,7 @@ void deleteUserService(UserType **start, UserType **end)
   return;
 }
 
-void getPositionUserService(UserType **start, UserType **end)
+void getPositionUser(UserType **start)
 {
   UserType *aux;
   CpfType cpf;
@@ -169,15 +186,30 @@ void getPositionUserService(UserType **start, UserType **end)
   return;
 }
 
-void getQueueSizeService(UserType **start, UserType **end)
+void getQueueSize(UserType **start)
 {
+  UserType *aux;
+  aux = *start;
+  unsigned int queueSize = 0;
+
+  system("cls");
+  printf("*** Tamanho da fila ***\n\n");
+
+  while (aux != NULL)
+  {
+    queueSize += 1;
+
+    aux = aux->next;
+  }
+
+  printf("*** Existem %d pessoa(s) na fila", queueSize);
 
   system("pause");
   system("cls");
   return;
 }
 
-void leaveQueueService(UserType **start, UserType **end)
+void leaveQueue(UserType **start, UserType **end)
 {
   UserType *previous, *aux;
   CpfType cpf;
@@ -223,4 +255,21 @@ void leaveQueueService(UserType **start, UserType **end)
   system("pause");
   system("cls");
   return;
+}
+
+bool cpfAlredyExist(UserType *start, CpfType cpf)
+{
+  UserType *aux;
+  aux = start;
+
+  while (aux != NULL)
+  {
+    if (strcmp(aux->cpf, cpf) == 0)
+    {
+      return true;
+    }
+    aux = aux->next;
+  }
+
+  return false;
 }
