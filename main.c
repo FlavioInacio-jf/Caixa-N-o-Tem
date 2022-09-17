@@ -216,39 +216,45 @@ void leaveQueue(UserType **start, UserType **end)
 
   system("cls");
   printf("*** Abandano da fila ***\n\n");
-  printf("CPF do usuario: ");
-  scanf(" %s", cpf);
 
-  aux = *start;
-  previous = NULL;
-
-  while (aux != NULL && !foundUser)
+  if (*start != NULL)
   {
-    if (strcmp(aux->cpf, cpf) == 0)
-    {
-      foundUser = true;
+    printf("CPF do usuario: ");
+    scanf(" %s", cpf);
 
-      if (previous == NULL) // Posiciona o ponteiro de início para caso a variável dinâmica a ser removida for a primeira
-        *start = aux->next;
-      else if (aux->next == NULL) // Posiciona o ponteiro de final para caso a variável dinâmica a ser removida for a última
-        *end = previous;
+    aux = *start;
+    previous = NULL;
+
+    while (aux != NULL && !foundUser)
+    {
+      if (strcmp(aux->cpf, cpf) == 0)
+      {
+        foundUser = true;
+
+        if (previous == NULL) // Posiciona o ponteiro de início para caso a variável dinâmica a ser removida for a primeira
+          *start = aux->next;
+        else if (aux->next == NULL) // Posiciona o ponteiro de final para caso a variável dinâmica a ser removida for a última
+          *end = previous;
+        else
+          previous->next = aux->next;
+
+        free(aux);
+        aux = NULL;
+      }
       else
-        previous->next = aux->next;
-
-      free(aux);
-      aux = NULL;
+      {
+        previous = aux;
+        aux = aux->next;
+      }
     }
+
+    if (foundUser)
+      printf("*** Usuário removido da fila ***");
     else
-    {
-      previous = aux;
-      aux = aux->next;
-    }
+      printf("*** Usuário não está na fila ***");
   }
-
-  if (foundUser)
-    printf("*** Usuário removido da fila ***");
   else
-    printf("*** Usuário não está na fila ***");
+    printf("*** Não existem pessoas na fila ***");
 
   system("pause");
   system("cls");
