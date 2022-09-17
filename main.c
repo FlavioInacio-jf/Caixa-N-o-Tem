@@ -188,6 +188,21 @@ void getPositionUser(UserType **start)
 
 void getQueueSize(UserType **start)
 {
+  UserType *aux;
+  aux = *start;
+  unsigned int queueSize = 0;
+
+  system("cls");
+  printf("*** Tamanho da fila ***\n\n");
+
+  while (aux != NULL)
+  {
+    queueSize += 1;
+
+    aux = aux->next;
+  }
+
+  printf("*** Existem %d pessoa(s) na fila", queueSize);
 
   system("pause");
   system("cls");
@@ -246,7 +261,7 @@ bool cpfAlredyExist(UserType *start, CpfType cpf)
 {
   UserType *aux;
   aux = start;
-  
+
   while (aux != NULL)
   {
     if (strcmp(aux->cpf, cpf) == 0)
