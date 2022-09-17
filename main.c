@@ -245,17 +245,16 @@ void leaveQueue(UserType **start, UserType **end)
 bool cpfAlredyExist(UserType *start, CpfType cpf)
 {
   UserType *aux;
-  bool foundUser = false;
-
   aux = start;
-  while (aux != NULL && !foundUser)
+  
+  while (aux != NULL)
   {
     if (strcmp(aux->cpf, cpf) == 0)
     {
-      foundUser = true;
+      return true;
     }
     aux = aux->next;
   }
 
-  return foundUser;
+  return false;
 }
