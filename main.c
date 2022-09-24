@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <locale.h>
 
 typedef char NameType[50];
 typedef char CpfType[11];
@@ -24,6 +25,7 @@ void deleteUser(UserType **start);
 
 int main()
 {
+  setlocale(LC_ALL, "Portuguese");
   menu();
 
   return 0;
@@ -31,7 +33,7 @@ int main()
 
 void menu()
 {
-  UserType *start = NULL, *end = NULL;
+  UserType *start = NULL, *end = NULL;            // Ponteiros para fila de espera
 
   int choice;
 
