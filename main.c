@@ -33,8 +33,7 @@ int main()
 
 void menu()
 {
-  UserType *start = NULL, *end = NULL; // Ponteiros para fila de espera
-  UserType queueService[5]; // Fila de Atendimento
+  UserType *start = NULL, *end = NULL;            // Ponteiros para fila de espera
 
   int choice;
 
